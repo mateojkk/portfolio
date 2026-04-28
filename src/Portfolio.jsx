@@ -14,7 +14,7 @@ export default function Portfolio() {
   return (
     <div className="pf-app">
       <nav className="pf-nav" data-scrolled={scrolled ? "true" : "false"}>
-        <span className="pf-brand">MATEOINRL</span>
+        <span className="pf-brand">MATEO</span>
         <div className="pf-nav-links">
           {["work", "about", "contact"].map((section) => (
             <a key={section} href={`#${section}`} className="pf-link pf-nav-link">
@@ -26,7 +26,7 @@ export default function Portfolio() {
 
       <section className="pf-hero">
         <div className="pf-hero-content">
-          <p className="pf-kicker">Founder · Developer · CTO · Product Engineer </p>
+          <p className="pf-kicker">Founder · Developer · CTO · Product Design & Engineer </p>
           <h1 className="pf-title">
             Building things
             <br />
@@ -46,12 +46,12 @@ export default function Portfolio() {
               View GitHub →
             </a>
             <a
-              href="https://twitter.com/mateoinrl"
+              href="https://twitter.com/mateojk_"
               target="_blank"
               rel="noreferrer"
               className="pf-btn-outline"
             >
-              @MATEOINRL on X
+              @MATEOJK_ on X
             </a>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function Portfolio() {
       </section>
 
       <footer className="pf-footer">
-        <span className="pf-footer-meta">MATEOINRL · 2026</span>
+        <span className="pf-footer-meta">MATEO · 2026</span>
       </footer>
     </div>
   );
