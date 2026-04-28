@@ -24,7 +24,7 @@ export const PROJECTS = [
   },
   {
     name: "MIKUU",
-    tagline: "Browser-based P2P payments",
+    tagline: "Browser-based gasless P2P payments",
     desc: "Peer-to-peer USDC.e payment app on the Tempo blockchain. AES-256-GCM encrypted wallets, terminal command interface, no extensions needed.",
     tech: ["Vite", "React", "FastAPI", "MongoDB", "Tempo"],
     live: null,
@@ -69,7 +69,7 @@ export const STACK = [
 ];
 
 export const CONTACT_LINKS = [
-  { label: "X / Twitter ↗", href: "https://twitter.com/mateoinrl" },
+  { label: "X / Twitter ↗", href: "https://twitter.com/mateojk_" },
   { label: "GitHub ↗", href: "https://github.com/mateojkk" },
   { label: "Email ↗", href: "mailto:thesaintszn@gmail.com" },
 ];
