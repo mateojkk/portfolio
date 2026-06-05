@@ -1,9 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --bg: #faf9f5;             /* calmer bone/cream white */
+  --surface: #ffffff;
+  --text: #1c1917;
+  --accent: #e5c1a3;         /* Kyosuke Hori's skin color, slightly darkened/deepened */
+  --accent-hover: #cfa888;   /* deeper warm peach hover */
+  --accent-bg: #fdf5ee;      /* soft warm cream accent bg */
+  --btn-text: #1c1917;       /* dark contrast text for buttons */
+  --muted: #6b6661;
+  --subtle: #a69f98;
+  --border: #e8e6df;
+  --tag-bg: #f2efe9;
+  --font-family: "Inter", sans-serif;
+  --shadow: 0 1px 3px rgba(28, 25, 23, 0.03), 0 1px 2px rgba(28, 25, 23, 0.01);
+}
+
+[data-theme="dark"] {
+  --bg: #121214;             /* grey black */
+  --surface: #1a1a1e;        /* slightly lighter grey black */
+  --text: #e4e4e7;
+  --accent: #fae1cc;         /* Kyosuke Hori's base skin color from Horimiya */
+  --accent-hover: #fff2e6;
+  --accent-bg: #2c241d;      /* dark warm brown background */
+  --btn-text: #121214;       /* dark background color as contrast text */
+  --muted: #a1a1aa;
+  --subtle: #5b5b60;
+  --border: #26262b;
+  --tag-bg: #1e1e22;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+button, input, select, textarea {
+  text-transform: inherit;
 }
 
 html {
@@ -12,10 +47,12 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: "Outfit", sans-serif;
-  font-weight: 400;
-  color: #111111;
-  background: #fafaf9;
+  font-family: var(--font-family);
+  font-weight: 300;          /* Inter light */
+  text-transform: lowercase; /* all lowercase/small letters */
+  letter-spacing: 0.04em;
+  color: var(--text);
+  background: var(--bg);
 }
 
 a {
@@ -29,8 +66,8 @@ a {
 
 .pf-app {
   min-height: 100vh;
-  color: #111111;
-  background: #fafaf9;
+  color: var(--text);
+  background: var(--bg);
 }
 
 .pf-nav {
@@ -42,23 +79,25 @@ a {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem 2.5rem;
-  border-bottom: 1px solid #e8e8e3;
-  background: #fafaf9;
-  transition: box-shadow 0.2s;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
 }
 
 .pf-nav[data-scrolled="true"] {
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .pf-brand {
-  font-family: "Instrument Serif", serif;
-  font-size: 1.25rem;
+  font-family: var(--font-family);
+  font-weight: 500;          /* Inter medium */
+  font-size: 1.15rem;
   letter-spacing: -0.02em;
 }
 
 .pf-nav-links {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -68,14 +107,36 @@ a {
 }
 
 .pf-link:hover {
-  color: #1b4332;
+  color: var(--accent);
 }
 
 .pf-nav-link {
   font-size: 0.82rem;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #999999;
+  text-transform: lowercase;
+  color: var(--muted);
+  font-weight: 500;          /* Inter medium */
+}
+
+.pf-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.pf-theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-bg);
 }
 
 .pf-hero {
@@ -93,23 +154,24 @@ a {
 .pf-kicker {
   margin-bottom: 1.25rem;
   font-size: 0.78rem;
-  font-weight: 500;
+  font-weight: 500;          /* Inter medium */
   letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #1b4332;
+  text-transform: lowercase;
+  color: var(--muted);
 }
 
 .pf-title {
   margin-bottom: 1.5rem;
-  font-family: "Instrument Serif", serif;
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-family: var(--font-family);
+  font-weight: 500;          /* Inter medium */
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 .pf-title-em {
   font-style: italic;
-  color: #2d6a4f;
+  font-weight: 300;          /* Inter light */
 }
 
 .pf-hero-copy {
@@ -117,8 +179,8 @@ a {
   margin-bottom: 2.5rem;
   font-size: 1.05rem;
   line-height: 1.7;
-  font-weight: 300;
-  color: #555555;
+  font-weight: 300;          /* Inter light */
+  color: var(--muted);
 }
 
 .pf-hero-actions {
@@ -136,45 +198,48 @@ a {
   width: min(100%, 420px);
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 1px solid #e8e8e3;
+  border: 1px solid var(--border);
   border-radius: 14px;
-  background: #ffffff;
+  background: var(--surface);
 }
 
 .pf-btn-primary,
 .pf-btn-outline {
   display: inline-block;
   padding: 0.72rem 1.6rem;
-  border-radius: 2px;
+  border-radius: 6px;
   font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-weight: 500;          /* Inter medium */
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
 }
 
 .pf-btn-primary {
-  background: #111111;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--btn-text);
+  border: 1px solid var(--accent);
 }
 
 .pf-btn-primary:hover {
-  background: #2d6a4f;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .pf-btn-outline {
-  border: 1px solid #cccccc;
+  border: 1px solid var(--border);
   background: transparent;
-  color: #111111;
+  color: var(--text);
 }
 
 .pf-btn-outline:hover {
-  border-color: #1b4332;
-  color: #1b4332;
+  border-color: var(--accent);
+  background: var(--accent-bg);
 }
 
 .pf-divider {
   height: 1px;
   margin: 0 2.5rem;
-  background: #e8e8e3;
+  background: var(--border);
 }
 
 .pf-section {
@@ -184,10 +249,60 @@ a {
 .pf-section-label {
   margin-bottom: 2.5rem;
   font-size: 0.74rem;
-  font-weight: 500;
+  font-weight: 500;          /* Inter medium */
   letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #999999;
+  text-transform: lowercase;
+  color: var(--subtle);
+}
+
+.pf-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.pf-section-header .pf-section-label {
+  margin-bottom: 0;
+}
+
+.pf-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pf-filter-btn {
+  padding: 0.45rem 1.15rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  font-weight: 500;          /* Inter medium */
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pf-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.pf-filter-btn-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--btn-text);
+}
+
+.pf-filter-btn-active:hover {
+  color: var(--btn-text);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .pf-projects-grid {
@@ -198,15 +313,21 @@ a {
 
 .pf-card {
   padding: 1.75rem;
-  border: 1px solid #e8e8e3;
-  background: #ffffff;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
   cursor: default;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: all 0.2s ease;
 }
 
 .pf-card:hover {
-  border-color: #1b4332;
+  border-color: var(--accent);
   transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .pf-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .pf-card-header {
@@ -218,8 +339,8 @@ a {
 }
 
 .pf-card-name {
-  font-family: "Instrument Serif", serif;
-  font-size: 1.4rem;
+  font-weight: 500;          /* Inter medium */
+  font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
 
@@ -228,25 +349,26 @@ a {
   margin-top: 4px;
   padding: 0.22rem 0.6rem;
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 500;          /* Inter medium */
   letter-spacing: 0.07em;
-  text-transform: uppercase;
+  text-transform: lowercase;
+  border-radius: 4px;
 }
 
 .pf-card-tagline {
   margin-bottom: 0.75rem;
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 500;          /* Inter medium */
   letter-spacing: 0.01em;
-  color: #2d6a4f;
+  color: var(--accent);
 }
 
 .pf-card-desc {
   margin-bottom: 1.25rem;
   font-size: 0.88rem;
   line-height: 1.65;
-  font-weight: 300;
-  color: #555555;
+  font-weight: 300;          /* Inter light */
+  color: var(--muted);
 }
 
 .pf-card-tech {
@@ -260,8 +382,10 @@ a {
   padding: 0.2rem 0.55rem;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
-  color: #666666;
-  background: #f5f5f2;
+  color: var(--muted);
+  background: var(--tag-bg);
+  border-radius: 4px;
+  font-weight: 300;          /* Inter light */
 }
 
 .pf-card-links {
@@ -273,8 +397,13 @@ a {
 .pf-card-link {
   font-size: 0.78rem;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #999999;
+  text-transform: lowercase;
+  color: var(--muted);
+  font-weight: 500;          /* Inter medium */
+}
+
+.pf-card-link:hover {
+  color: var(--accent);
 }
 
 .pf-github-cta {
@@ -285,19 +414,20 @@ a {
   gap: 1rem;
   margin-top: 2.5rem;
   padding: 1.5rem 2rem;
-  border: 1px dashed #e8e8e3;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
 }
 
 .pf-github-title {
   margin-bottom: 0.25rem;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 500;          /* Inter medium */
 }
 
 .pf-github-copy {
   font-size: 0.85rem;
-  font-weight: 300;
-  color: #555555;
+  font-weight: 300;          /* Inter light */
+  color: var(--muted);
 }
 
 .pf-about-grid {
@@ -310,13 +440,13 @@ a {
 .pf-about-copy {
   font-size: 1rem;
   line-height: 1.85;
-  font-weight: 300;
-  color: #444444;
+  font-weight: 300;          /* Inter light */
+  color: var(--muted);
 }
 
 .pf-strong {
-  font-weight: 500;
-  color: #111111;
+  font-weight: 500;          /* Inter medium */
+  color: var(--text);
 }
 
 .pf-stack-row {
@@ -328,7 +458,7 @@ a {
 }
 
 .pf-stack-row-border {
-  border-bottom: 1px solid #e8e8e3;
+  border-bottom: 1px solid var(--border);
 }
 
 .pf-stack-cat {
@@ -336,14 +466,15 @@ a {
   flex-shrink: 0;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #999999;
+  text-transform: lowercase;
+  color: var(--subtle);
+  font-weight: 500;          /* Inter medium */
 }
 
 .pf-stack-items {
   font-size: 0.88rem;
-  font-weight: 300;
-  color: #444444;
+  font-weight: 300;          /* Inter light */
+  color: var(--text);
 }
 
 .pf-contact-wrap {
@@ -354,8 +485,8 @@ a {
   margin-bottom: 2rem;
   font-size: 1rem;
   line-height: 1.8;
-  font-weight: 300;
-  color: #444444;
+  font-weight: 300;          /* Inter light */
+  color: var(--muted);
 }
 
 .pf-contact-links {
@@ -366,16 +497,17 @@ a {
 
 .pf-contact-link {
   padding-bottom: 2px;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid var(--border);
   font-size: 0.88rem;
   letter-spacing: 0.02em;
-  color: #111111;
-  transition: color 0.2s, border-color 0.2s;
+  color: var(--text);
+  font-weight: 500;          /* Inter medium */
+  transition: all 0.2s ease;
 }
 
 .pf-contact-link:hover {
-  color: #1b4332;
-  border-color: #1b4332;
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .pf-footer {
@@ -385,13 +517,14 @@ a {
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 2rem 2.5rem;
-  border-top: 1px solid #e8e8e3;
+  border-top: 1px solid var(--border);
 }
 
 .pf-footer-meta {
   font-size: 0.78rem;
   letter-spacing: 0.03em;
-  color: #aaaaaa;
+  color: var(--subtle);
+  font-weight: 500;          /* Inter medium */
 }
 
 @media (max-width: 900px) {
@@ -406,6 +539,7 @@ a {
   }
 
   .pf-hero-photo-wrap {
+    order: -1;
     justify-content: flex-start;
   }
 
@@ -429,6 +563,7 @@ a {
   .pf-nav-links {
     gap: 1rem;
     width: 100%;
+    justify-content: space-between;
   }
 
   .pf-nav-link {
@@ -446,8 +581,8 @@ a {
   }
 
   .pf-title {
-    font-size: clamp(2.5rem, 15vw, 3.8rem);
-    line-height: 1.02;
+    font-size: clamp(2.3rem, 12vw, 3.4rem);
+    line-height: 1.1;
   }
 
   .pf-hero-copy,
@@ -480,6 +615,23 @@ a {
 
   .pf-section {
     padding: 3rem 1.5rem;
+  }
+
+  .pf-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .pf-filters {
+    width: 100%;
+    gap: 0.4rem;
+  }
+
+  .pf-filter-btn {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.76rem;
   }
 
   .pf-divider {

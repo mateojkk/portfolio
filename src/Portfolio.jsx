@@ -4,6 +4,16 @@ import { CONTACT_LINKS, PROJECTS, STACK } from "./constants";
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  const categories = ["All", "Web3", "AI", "Tools"];
+
+  const filteredProjects = activeCategory === "All"
+    ? PROJECTS
+    : PROJECTS.filter((p) => p.category === activeCategory);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -11,30 +21,41 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <div className="pf-app">
       <nav className="pf-nav" data-scrolled={scrolled ? "true" : "false"}>
-        <span className="pf-brand">MATEO</span>
+        <h1 className="pf-brand">MATEO</h1>
         <div className="pf-nav-links">
           {["work", "about", "contact"].map((section) => (
             <a key={section} href={`#${section}`} className="pf-link pf-nav-link">
               {section}
             </a>
           ))}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="pf-theme-toggle"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            )}
+          </button>
         </div>
       </nav>
 
       <section className="pf-hero">
         <div className="pf-hero-content">
-          <p className="pf-kicker">Founder · Developer · CTO · Product Design & Engineer </p>
-          <h1 className="pf-title">
-            Building things
-            <br />
-            people <em className="pf-title-em">actually</em> use.
-          </h1>
+          <p className="pf-kicker">Developer · Product Engineer · Creator</p>
+
           <p className="pf-hero-copy">
-            I design and ship consumer products at the intersection of AI, crypto,
-            and everyday usability.
+            I build consumer applications across crypto and AI, and create content around AI, crypto, and stablecoins, including sponsored technical deep-dives and casual posts for anyone.
           </p>
           <div className="pf-hero-actions">
             <a
@@ -68,9 +89,22 @@ export default function Portfolio() {
       <div className="pf-divider" />
 
       <section id="work" className="pf-section">
-        <p className="pf-section-label">Selected Projects</p>
+        <div className="pf-section-header">
+          <p className="pf-section-label">Selected Projects</p>
+          <div className="pf-filters">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`pf-filter-btn ${activeCategory === cat ? "pf-filter-btn-active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="pf-projects-grid">
-          {PROJECTS.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
         </div>
@@ -100,13 +134,10 @@ export default function Portfolio() {
         <div className="pf-about-grid">
           <div>
             <p className="pf-about-copy">
-              I&apos;m a <strong className="pf-strong">founder and CTO</strong>{" "}
-              finishing my CS degree. I build consumer-facing products in the
-              web3, web2 and AI space.
+              I&apos;m a <strong className="pf-strong">solo developer, product engineer, and creator</strong> finishing my CS degree.
               <br />
               <br />
-              I&apos;m a vocal voice in the L1/L2 ecosystem and believe the best
-              products are the ones that remove friction completely.
+              I build consumer applications across crypto and AI, and create content around AI, crypto, and stablecoins, including sponsored technical deep-dives and casual posts for anyone.
             </p>
           </div>
           <div>
